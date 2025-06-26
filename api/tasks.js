@@ -11,44 +11,35 @@ sampleTask = {
     userId: 2,
 };
 
+
+
 // GET all tasks
 router.get("/", (req, res) => {
   const task = Task.findAll();
   res.json(task);
 });
 
-
-// Patch a task by id
-router.patch("/", (req, res) => {
-  const task = Task.update(2, sampleTask);
-  res.send(task);
-});
-
-
-
 // GET a single task by id
-/*
-router.get("/", (req, res) => {
-  const task = Task.findByPk(2);
-  res.status(200).send(task)
+router.get("/:id", (req, res) => {
+  const task = Task.findByPk(req.params.id);
+  res.status.send(task)
 });
-*/
-
-
-
-
 
 // Delete a task by id
-router.delete("/", (req, res) => {
-  const task = Task.delete(req.body);
+router.delete("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const task = Task.delete(id);
   res.send(task);
 });
 
+// Patch a task by id
+router.patch("/:id", (req, res) => {
+  const task = Task.update(parseInt(req.params.id), req.body);
+  res.send(task);
+});
 
 // Create a new task
-
 router.post("/", (req, res) => {
-
   const task = Task.create(req.body);
   res.send(task);
 });

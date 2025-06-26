@@ -15,7 +15,7 @@ app.use(cors()); // allow all origins
 
 app.use(morgan("dev")); // logging middleware
 app.use(express.static(path.join(__dirname, "public"))); // serve static files from public folder
-app.use("/api", apiRouter); // mount api router
+app.use("/api/", apiRouter); // mount api router
 
 // error handling middleware
 app.use((err, req, res, next) => {
