@@ -2,17 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { Task } = require("../dummy-database");
 
-
-sampleTask = {
-    id: 4,
-    title: "Test",
-    description: "Test",
-    completed: false,
-    userId: 2,
-};
-
-
-
 // GET all tasks
 router.get("/", (req, res) => {
   const task = Task.findAll();
